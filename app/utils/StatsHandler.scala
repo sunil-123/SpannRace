@@ -5,7 +5,7 @@ import models.{RacerStatus, Speed, Station}
 import scala.collection.mutable
 
 
-class StatsHandler {
+object StatsHandler {
   var statusOfRacers: mutable.HashMap[Int, RacerStatus] = new mutable.HashMap()
 
   def initializeRacer(racerId: Int, source: Station, destination: Station, speed: Speed) = {
@@ -46,15 +46,5 @@ class StatsHandler {
     statusOfRacers(racerId) = updatedStatus
 
     println("parked racer : "+racerId)
-  }
-}
-
-object StatsHandler {
-  var handler: Option[StatsHandler] = None
-
-  def getInstance = {
-    if (handler.isEmpty)
-      handler = Some(new StatsHandler)
-    handler.get
   }
 }

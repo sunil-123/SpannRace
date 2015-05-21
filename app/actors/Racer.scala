@@ -6,8 +6,8 @@ import com.spann.utils.Messages
 import models.{Speed, Station}
 import utils.{StationHandler, StatsHandler}
 
-class Racer(id: Int, source: Station, speed: Speed, destination: Station, statsHandler: StatsHandler) extends Actor with ActorLogging {
-  val monitor = context.actorOf(Props(new Monitor(statsHandler)), "monitor")
+class Racer(id: Int, source: Station, speed: Speed, destination: Station) extends Actor with ActorLogging {
+  val monitor = context.actorOf(Props(new Monitor), "monitor")
 
   val totalDistance = StationHandler.getDistanceBetweenStations(source, destination)
   val totalTime = totalDistance / speed.speed
@@ -26,7 +26,7 @@ class Racer(id: Int, source: Station, speed: Speed, destination: Station, statsH
 
   def readyToRace: Receive = {
     case RacerMessages.Initialized =>
-      while(statsHandler.moreDistanceRemaining(id)) {
+      while(StatsHandler.moreDistanceRemaining(id)) {
         monitor ! Driving(id)
         Thread.sleep(timeFor1KmInMillis.toLong)
       }

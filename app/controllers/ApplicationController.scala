@@ -12,6 +12,6 @@ object ApplicationController extends Controller {
   def startSystem = Action {
     implicit request =>
       SystemService.start
-      Ok("systemStarted")
+      Ok(views.html.status())
   }
 }

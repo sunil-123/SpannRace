@@ -1,7 +1,4 @@
-@import models.RacerStatus
-@import scala.collection.mutable.HashMap
-
-@(statusOfRacers: HashMap[Int, RacerStatus])
+@import utils.StatsHandler
 
 @main {
     <table>
@@ -10,7 +7,7 @@
             Destination</th>
         </tr>
         @{
-            statusOfRacers.toSeq.sortBy(_._1).foreach {
+            StatsHandler.statusOfRacers.toSeq.sortBy(_._1).foreach {
                 case (racerId, status) =>
                     Html("<tr>")
                     Html(s"<td>$racerId</td>")

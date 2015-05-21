@@ -12,15 +12,17 @@ class ApplicationActor extends Actor with ActorLogging {
 
   override def preStart(): Unit = {
     StationHandler.initializeStations
-    val statsHandler = StatsHandler.getInstance
 
-    val racer1 = context.actorOf(Props(new Racer(1, Station.findByName("a").get, Speed(14000), Station.findByName("c").get, statsHandler)), "racer1")
-    val racer2 = context.actorOf(Props(new Racer(2, Station.findByName("b").get, Speed(12000), Station.findByName("i").get, statsHandler)), "racer2")
+    val racer1 = context.actorOf(Props(new Racer(1, Station.findByName("a").get, Speed(14000), Station.findByName("c").get)), "racer1")
+    val racer2 = context.actorOf(Props(new Racer(2, Station.findByName("b").get, Speed(12000), Station.findByName("i").get)), "racer2")
 
     racerList += racer1
     racerList += racer2
 
     racerList.foreach(_ ! Start)
+
+    val reportGenerator = context.actorOf(Props(new ReportGenerator))
+    reportGenerator ! ReportGenerator.Start
   }
 
   def receive = {

@@ -5,18 +5,18 @@ import com.spann.actors.MonitorMessages.{Driving, Parked, Started}
 import models.{Speed, Station}
 import utils.StatsHandler
 
-class Monitor(statsHandler: StatsHandler) extends Actor with ActorLogging {
+class Monitor extends Actor with ActorLogging {
 
   def receive = {
     case m: Started =>
-      statsHandler.initializeRacer(m.racerId, m.source, m.destination, m.speed)
+      StatsHandler.initializeRacer(m.racerId, m.source, m.destination, m.speed)
       sender ! RacerMessages.Initialized
 
     case e: Driving =>
-      statsHandler.addDistanceForRacer(e.racerId, 1)
+      StatsHandler.addDistanceForRacer(e.racerId, 1)
 
     case e: Parked =>
-      statsHandler.parkedRacer(e.racerId)
+      StatsHandler.parkedRacer(e.racerId)
   }
 }
 
