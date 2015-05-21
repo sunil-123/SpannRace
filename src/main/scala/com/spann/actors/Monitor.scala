@@ -2,19 +2,22 @@ package com.spann.actors
 
 import akka.actor.{Actor, ActorLogging}
 import com.spann.StatsHandler
-import com.spann.actors.MonitorMessages.{Started, Driving}
+import com.spann.actors.MonitorMessages.{Parked, Started, Driving}
 import com.spann.models.{Speed, Station}
 
-class Monitor extends Actor with ActorLogging {
+class Monitor(statsHandler: StatsHandler) extends Actor with ActorLogging {
 
   def receive = {
     case m: Started =>
-      val stats = StatsHandler.getInstance
-      stats.initializeRacer(m.racerId, m.source, m.destination, m.speed)
+      statsHandler.initializeRacer(m.racerId, m.source, m.destination, m.speed)
       sender ! RacerMessages.Initialized
 
     case e: Driving =>
-      e.racerId
+      statsHandler.addDistanceForRacer(e.racerId, 1)
+      println(s"Racer ${e.racerId} is running")
+
+    case e: Parked =>
+      statsHandler.parkedRacer(e.racerId)
   }
 }
 

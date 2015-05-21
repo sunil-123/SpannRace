@@ -12,10 +12,11 @@ class MonitorSpec(_system: ActorSystem) extends TestKit(_system) with ImplicitSe
     TestKit.shutdownActorSystem(system)
   }
 
-  "Monitor Actor" must {
-    "receive racer's status signal" in {
-      val monitor = TestActorRef[Monitor](new Monitor)
-      monitor.receive(Driving(1))
-    }
-  }
+//  "Monitor Actor" must {
+//    "receive racer's status signal" in {
+//      val statsHandler = Stats
+//      val monitor = TestActorRef[Monitor](new Monitor)
+//      monitor.receive(Driving(1))
+//    }
+//  }
 }

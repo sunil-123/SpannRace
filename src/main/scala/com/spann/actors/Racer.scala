@@ -1,11 +1,13 @@
 package com.spann.actors
 
 import akka.actor.{Props, ActorLogging, Actor}
+import com.spann.StatsHandler
+import com.spann.actors.MonitorMessages.{Parked, Driving}
 import com.spann.models.{Speed, Station}
 import com.spann.utils.Messages
 
-class Racer(id: Int, source: Station, speed: Speed, destination: Station) extends Actor with ActorLogging {
-  val monitor = context.actorOf(Props[Monitor], "monitor")
+class Racer(id: Int, source: Station, speed: Speed, destination: Station, statsHandler: StatsHandler) extends Actor with ActorLogging {
+  val monitor = context.actorOf(Props(new Monitor(statsHandler)), "monitor")
 
   def receive = {
     case RacerMessages.Start =>
@@ -19,7 +21,11 @@ class Racer(id: Int, source: Station, speed: Speed, destination: Station) extend
 
   def readyToRace: Receive = {
     case RacerMessages.Initialized =>
-      println("ready to race")
+      while(statsHandler.moreDistanceRemaining(id)) {
+        monitor ! Driving(id)
+        Thread.sleep(1000)
+      }
+      monitor ! Parked(id)
   }
 }
 
