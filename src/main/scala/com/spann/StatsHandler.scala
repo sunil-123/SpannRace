@@ -15,6 +15,7 @@ class StatsHandler {
     distanceRemaining = distanceRemaining, source = source, destination = destination)
 
     statusOfRacers += (racerId -> status)
+    StationHandler.initializeStationStatus(racerId, source, destination)
 
     println(s"initialized $racerId with status: $status")
   }
@@ -34,6 +35,9 @@ class StatsHandler {
     distanceRemaining = racerStatus.distanceRemaining - distance)
 
     statusOfRacers(racerId) = updatedStatus
+    StationHandler.updateStationStatus(racerId, racerStatus)
+
+    println(s"Racer $racerId drove ${racerStatus.distanceTravelled + distance}")
   }
 
   def parkedRacer(racerId: Int) = {

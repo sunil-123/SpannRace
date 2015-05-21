@@ -27,6 +27,9 @@ class Racer(id: Int, source: Station, speed: Speed, destination: Station, statsH
       }
       monitor ! Parked(id)
   }
+
+  def getDestination = destination
+  def getSource = source
 }
 
 object RacerMessages {

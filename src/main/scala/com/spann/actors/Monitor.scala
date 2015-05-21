@@ -15,7 +15,6 @@ class Monitor(statsHandler: StatsHandler) extends Actor with ActorLogging {
 
     case e: Driving =>
       statsHandler.addDistanceForRacer(e.racerId, 1)
-      println(s"Racer ${e.racerId} is running")
 
     case e: Parked =>
       statsHandler.parkedRacer(e.racerId)
