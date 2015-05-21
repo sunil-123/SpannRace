@@ -1,6 +1,6 @@
 package com.spann.actors
 
-import akka.actor.{ActorRef, Actor, ActorLogging, Props}
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 import com.spann.actors.RacerMessages._
 import com.spann.models.{Speed, Station}
 import com.spann.{StationHandler, StatsHandler}
@@ -21,6 +21,9 @@ class ApplicationActor extends Actor with ActorLogging {
     racerList += racer2
 
     racerList.foreach(_ ! Start)
+
+    val reportGenerator = context.actorOf(Props(new ReportGenerator(statsHandler)))
+    reportGenerator ! ReportGenerator.Start
   }
 
   def receive = {

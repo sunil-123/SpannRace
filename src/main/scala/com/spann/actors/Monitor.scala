@@ -1,12 +1,11 @@
 package com.spann.actors
 
-import akka.actor.{Props, Actor, ActorLogging}
+import akka.actor.{Actor, ActorLogging}
 import com.spann.StatsHandler
-import com.spann.actors.MonitorMessages.{Parked, Started, Driving}
+import com.spann.actors.MonitorMessages.{Driving, Parked, Started}
 import com.spann.models.{Speed, Station}
 
 class Monitor(statsHandler: StatsHandler) extends Actor with ActorLogging {
-//  val appActor = context.actorOf(Props[ApplicationActor])
 
   def receive = {
     case m: Started =>
@@ -18,7 +17,6 @@ class Monitor(statsHandler: StatsHandler) extends Actor with ActorLogging {
 
     case e: Parked =>
       statsHandler.parkedRacer(e.racerId)
-//      appActor ! "stop"
   }
 }
 

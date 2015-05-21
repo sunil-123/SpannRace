@@ -1,7 +1,5 @@
 package com.spann
 
-import akka.actor.ActorRef
-import com.spann.actors.Racer
 import com.spann.models.Station
 import com.spann.utils.{RacerStatus, StationStatus}
 
@@ -43,7 +41,7 @@ object StationHandler {
       i = i - 1
       station = stationList.get(i).get
     }
-    println("stationList status:"+stationStatus)
+//    println("stationList status:"+stationStatus)
   }
 
   def getDistanceBetweenStations(a: Station, b: Station): Int = {
@@ -100,7 +98,7 @@ object StationHandler {
         stationStatus(previousStation.get.name) = StationStatus(previousStation.get, presentStatus.vehiclesApproaching.drop(racerId),
           presentStatus.vehiclesPassed += racerId)
 
-        println("stationStatus: "+stationStatus)
+//        println("stationStatus: "+stationStatus)
       }
     }
   }
