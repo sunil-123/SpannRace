@@ -95,7 +95,7 @@ object StationHandler {
       val presentStatus = stationStatus(previousStation.get.name)
 
       if (presentStatus.vehiclesApproaching.contains(racerId)) {
-        stationStatus(previousStation.get.name) = StationStatus(previousStation.get, presentStatus.vehiclesApproaching.drop(racerId),
+        stationStatus(previousStation.get.name) = StationStatus(previousStation.get, presentStatus.vehiclesApproaching.filter(_ != racerId),
           presentStatus.vehiclesPassed += racerId)
 
 //        println("stationStatus: "+stationStatus)
