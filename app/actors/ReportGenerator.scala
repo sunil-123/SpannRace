@@ -1,7 +1,7 @@
 package com.spann.actors
 
 import akka.actor.{Actor, ActorLogging}
-import com.spann.{StationHandler, StatsHandler}
+import utils.{StationHandler, StatsHandler}
 
 class ReportGenerator(statsHandler: StatsHandler) extends Actor with ActorLogging {
 

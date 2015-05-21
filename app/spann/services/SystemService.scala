@@ -1,10 +1,10 @@
-package com.spann
+package spann.services
 
 import com.spann.actors.ApplicationActor
 
-object App {
+object SystemService {
 
-  def main(args: Array[String]): Unit = {
+  def start = {
     val initialActor = classOf[ApplicationActor].getName
     akka.Main.main(Array(initialActor))
   }

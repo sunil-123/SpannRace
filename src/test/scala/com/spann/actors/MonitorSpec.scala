@@ -1,9 +1,7 @@
 package com.spann.actors
 
 import akka.actor.ActorSystem
-import akka.testkit.{TestActorRef, ImplicitSender, TestKit}
-import com.spann.actors.MonitorMessages.Driving
-import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
+import akka.testkit.{ImplicitSender, TestKit}
 
 class MonitorSpec(_system: ActorSystem) extends TestKit(_system) with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll {
   def this() = this(ActorSystem("MonitorSpec"))

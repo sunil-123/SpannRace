@@ -1,9 +1,9 @@
 package com.spann.actors
 
 import akka.actor.{Actor, ActorLogging}
-import com.spann.StatsHandler
 import com.spann.actors.MonitorMessages.{Driving, Parked, Started}
-import com.spann.models.{Speed, Station}
+import models.{Speed, Station}
+import utils.StatsHandler
 
 class Monitor(statsHandler: StatsHandler) extends Actor with ActorLogging {
 

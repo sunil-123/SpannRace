@@ -1,6 +1,6 @@
-package com.spann.models
+package models
 
-import com.spann.StationHandler
+import utils.StationHandler
 
 case class Station(name: String, previousStation: Option[Station], distanceFromPreviousStation: Int)
 

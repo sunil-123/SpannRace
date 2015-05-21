@@ -1,7 +1,6 @@
-package com.spann
+package utils
 
-import com.spann.models.{Speed, Station}
-import com.spann.utils.RacerStatus
+import models.{RacerStatus, Speed, Station}
 
 import scala.collection.mutable
 

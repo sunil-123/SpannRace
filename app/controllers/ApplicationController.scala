@@ -1,10 +1,17 @@
 package controllers
 
 import play.api.mvc.{Action, Controller}
+import spann.services.SystemService
 
 object ApplicationController extends Controller {
   def index = Action {
     implicit request =>
-      Ok(views.html.index())
+      Ok("hello")
+  }
+
+  def startSystem = Action {
+    implicit request =>
+      SystemService.start
+      Ok("systemStarted")
   }
 }

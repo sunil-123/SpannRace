@@ -1,4 +1,4 @@
-package com.spann.models
+package models
 
 case class Speed(speed: Float) {
   def inMeterPerSecond = {

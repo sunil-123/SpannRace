@@ -1,5 +1,6 @@
 #Application Routes
 
 GET        /                     controllers.ApplicationController.index
+GET        /start                controllers.ApplicationController.startSystem
 GET        /webjars/*file        controllers.WebJarAssets.at(file)
 GET        /assets/*file         controllers.Assets.at(path="/public", file)

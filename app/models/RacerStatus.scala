@@ -1,6 +1,4 @@
-package com.spann.utils
-
-import com.spann.models.{Station, Speed}
+package models
 
 case class RacerStatus(racerId: Int, status: String, speed: Speed, distanceTravelled: Int, distanceRemaining: Int,
                        source: Station, destination: Station) extends Ordered[RacerStatus] {

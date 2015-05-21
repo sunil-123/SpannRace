@@ -1,0 +1,27 @@
+@import models.RacerStatus
+@import scala.collection.mutable.HashMap
+
+@(statusOfRacers: HashMap[Int, RacerStatus])
+
+@main {
+    <table>
+        <tr>
+            <th>RacerId</th><th>Status</th><th>Speed</th><th>Travelled</th><th>Remaining</th><th>Source</th><th>
+            Destination</th>
+        </tr>
+        @{
+            statusOfRacers.toSeq.sortBy(_._1).foreach {
+                case (racerId, status) =>
+                    Html("<tr>")
+                    Html(s"<td>$racerId</td>")
+                    Html(s"<td>${status.status}</td>")
+                    Html(s"<td>${status.speed}</td>")
+                    Html(s"<td>${status.distanceTravelled}</td>")
+                    Html(s"<td>${status.distanceRemaining}</td>")
+                    Html(s"<td>${status.source}</td>")
+                    Html(s"<td>${status.destination}</td>")
+                    Html("</tr>")
+            }
+        }
+    </table>
+}

@@ -1,10 +1,7 @@
 package com.spann.actors
 
 import akka.actor.ActorSystem
-import akka.testkit.{ImplicitSender, TestActorRef, TestKit}
-import com.spann.models.{Speed, Station}
-import com.spann.utils.Messages
-import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
+import akka.testkit.{ImplicitSender, TestKit}
 
 class RacerSpec(_system: ActorSystem) extends TestKit(_system) with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll {
   def this() = this(ActorSystem("RacerSpec"))

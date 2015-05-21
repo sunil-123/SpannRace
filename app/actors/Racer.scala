@@ -2,9 +2,9 @@ package com.spann.actors
 
 import akka.actor.{Actor, ActorLogging, Props}
 import com.spann.actors.MonitorMessages.{Driving, Parked}
-import com.spann.models.{Speed, Station}
 import com.spann.utils.Messages
-import com.spann.{StationHandler, StatsHandler}
+import models.{Speed, Station}
+import utils.{StationHandler, StatsHandler}
 
 class Racer(id: Int, source: Station, speed: Speed, destination: Station, statsHandler: StatsHandler) extends Actor with ActorLogging {
   val monitor = context.actorOf(Props(new Monitor(statsHandler)), "monitor")
