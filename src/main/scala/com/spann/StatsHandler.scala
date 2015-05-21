@@ -35,8 +35,14 @@ class StatsHandler {
 
     statusOfRacers(racerId) = updatedStatus
   }
-  def parkedRacer(racerId: Int) = {
 
+  def parkedRacer(racerId: Int) = {
+    val racerStatus = statusOfRacers.get(racerId).get
+    val updatedStatus = racerStatus.copy(status = "parked", distanceRemaining = 0)
+
+    statusOfRacers(racerId) = updatedStatus
+
+    println("parked racer : "+racerId)
   }
 }
 
