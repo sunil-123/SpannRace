@@ -16,15 +16,15 @@ object StationHandler {
 
   def initializeStations = {
     stationList += Station("a", None, 0)
-    stationList += Station("b", Station.findByName("a"), 3)
-    stationList += Station("c", Station.findByName("b"), 4)
-    stationList += Station("d", Station.findByName("c"), 2)
-    stationList += Station("e", Station.findByName("d"), 5)
-    stationList += Station("f", Station.findByName("e"), 7)
-    stationList += Station("g", Station.findByName("f"), 2)
-    stationList += Station("h", Station.findByName("g"), 4)
-    stationList += Station("i", Station.findByName("h"), 3)
-    stationList += Station("j", Station.findByName("i"), 10)
+    stationList += Station("b", Station.findByName("a"), 10)
+    stationList += Station("e", Station.findByName("b"), 8)
+    stationList += Station("f", Station.findByName("e"), 6)
+    stationList += Station("c", Station.findByName("f"), 10)
+    stationList += Station("i", Station.findByName("c"), 12)
+    stationList += Station("g", Station.findByName("i"), 10)
+    stationList += Station("h", Station.findByName("g"), 5)
+    stationList += Station("d", Station.findByName("h"), 20)
+    stationList += Station("j", Station.findByName("d"), 20)
 
     stationList.foreach {
       station =>
