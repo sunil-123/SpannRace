@@ -1,13 +1,18 @@
 package com.spann.actors
 
-import akka.actor.{Props, ActorLogging, Actor}
-import com.spann.StatsHandler
-import com.spann.actors.MonitorMessages.{Parked, Driving}
+import akka.actor.{Actor, ActorLogging, Props}
+import com.spann.actors.MonitorMessages.{Driving, Parked}
 import com.spann.models.{Speed, Station}
 import com.spann.utils.Messages
+import com.spann.{StationHandler, StatsHandler}
 
 class Racer(id: Int, source: Station, speed: Speed, destination: Station, statsHandler: StatsHandler) extends Actor with ActorLogging {
   val monitor = context.actorOf(Props(new Monitor(statsHandler)), "monitor")
+
+  val totalDistance = StationHandler.getDistanceBetweenStations(source, destination)
+  val totalTime = totalDistance / speed.speed
+  val timeFor1KmInHour = totalTime / totalDistance
+  val timeFor1KmInMillis = timeFor1KmInHour * 3600 * 1000
 
   def receive = {
     case RacerMessages.Start =>
@@ -23,7 +28,7 @@ class Racer(id: Int, source: Station, speed: Speed, destination: Station, statsH
     case RacerMessages.Initialized =>
       while(statsHandler.moreDistanceRemaining(id)) {
         monitor ! Driving(id)
-        Thread.sleep(1000)
+        Thread.sleep(timeFor1KmInMillis.toLong)
       }
       monitor ! Parked(id)
   }
