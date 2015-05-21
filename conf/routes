@@ -1,3 +1,5 @@
 #Application Routes
 
-GET        /        controllers.ApplicationController.index
+GET        /                     controllers.ApplicationController.index
+GET        /webjars/*file        controllers.WebJarAssets.at(file)
+GET        /assets/*file         controllers.Assets.at(path="/public", file)

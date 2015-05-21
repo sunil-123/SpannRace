@@ -12,5 +12,7 @@ libraryDependencies ++= Seq(
   // Akka
   "com.typesafe.akka" %% "akka-actor" % "2.3.5",
   //"com.typesafe.akka" %% "akka-remote" % "2.3.5",
-  "com.typesafe.akka" %% "akka-testkit" % "2.3.5"
+  "com.typesafe.akka" %% "akka-testkit" % "2.3.5",
+  "org.webjars" %% "webjars-play" % "2.3.0-2",
+  "org.webjars" % "bootstrap" % "3.1.1-2"
 )
