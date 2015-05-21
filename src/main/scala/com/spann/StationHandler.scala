@@ -20,6 +20,13 @@ object StationHandler {
     stationList += Station("a", None, 0)
     stationList += Station("b", Station.findByName("a"), 3)
     stationList += Station("c", Station.findByName("b"), 4)
+    stationList += Station("d", Station.findByName("c"), 2)
+    stationList += Station("e", Station.findByName("d"), 5)
+    stationList += Station("f", Station.findByName("e"), 7)
+    stationList += Station("g", Station.findByName("f"), 2)
+    stationList += Station("h", Station.findByName("g"), 4)
+    stationList += Station("i", Station.findByName("h"), 3)
+    stationList += Station("j", Station.findByName("i"), 10)
 
     stationList.foreach {
       station =>
