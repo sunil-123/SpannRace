@@ -1,8 +1,10 @@
-name := """akka-scala-seed"""
+name := """spann-race"""
 
-version := "1.0"
+version := "1.0.0-SNAPSHOT"
 
 scalaVersion := "2.10.4"
+
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 libraryDependencies ++= Seq(
   // Change this to another test framework if you prefer
